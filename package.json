@@ -2,7 +2,10 @@
   "scripts": {
     "test": "vitest run",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "build": "npm run build:clean && npm run build:copy",
+    "build:clean": "rm -rf dist && mkdir -p dist",
+    "build:copy": "cp index.html script.js style.css dist/"
   },
   "devDependencies": {
     "eslint": "^8.57.1",
