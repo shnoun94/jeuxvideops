@@ -1,9 +1,12 @@
 {
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
-
   "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-google": "^0.14.0",
     "vitest": "^4.1.4"
   },
   "dependencies": {
