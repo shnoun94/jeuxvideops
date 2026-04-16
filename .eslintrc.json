@@ -3,11 +3,11 @@
   "env": {
     "browser": true,
     "node": true,
-    "es2020": true
+    "es6": true,
+    "jest": true
   },
   "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module"
+    "ecmaVersion": 2020
   },
   "rules": {
     "max-len": ["error", {"code": 120}],

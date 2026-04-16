@@ -1,4 +1,4 @@
-import {getRandomInt, rectIntersect, circleIntersect, timeToString} from './script.js';
+export {getRandomInt, rectIntersect, circleIntersect, timeToString};
 const canvasWidth = document.getElementsByTagName('canvas')[0].clientWidth;
 const canvasHeight = document.getElementsByTagName('canvas')[0].clientHeight;
 
