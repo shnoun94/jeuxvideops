@@ -1,0 +1,68 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Construction de l'application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        # crée le dossier dist/
+
+      - name: Config git pages
+        uses: actions/configure-pages@v4
+        with:
+          enablement: true  # active git pages
+
+      
+      - name: Config git pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+          # envoie le contenu de dist/ à GitHub
+
+  deploy:
+    name: Déploiement sur GitHub Pages
+    needs: build        #attend que build soit terminé
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps: 
+      - name: Déploiement vers GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        #public l'artefact sur github

@@ -1,0 +1,114 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "**" # Toutes les branches
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch: # Permet de lancer manuellement depuis l'interface GitHub
+  
+jobs:
+  test:
+    name: Test automatisé
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
+
+    steps:
+      # ÉTAPE 1 : Récupérer le code
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      # ÉTAPE 2 : Installer Node.js
+      - name: Instalation de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm" #pour aller plus vite
+
+      # ÉTAPE 3 : Installer les dépendances
+      - name: Installation des dépendances
+        run: npm ci #plus rapide et plus fiable que npm install
+
+      # ÉTAPE 4 : Lancer les tests unitaires
+      - name: Execution des test unitaires
+        id: unit-tests
+        run: npm test # Exécute le script "test" dans package.json
+        continue-on-error: true # Ne pas échouer le job si les tests échouent, on veut juste les résultats
+
+      # ÉTAPE 5 : Lancer les tests fonctionnels
+      - name: Exécutions des tests fonctionnels
+        id: e2e-tests
+        run: npx playwright test
+        continue-on-error: true # Ne pas échouer le job si les tests échouent, on veut juste les résultats
+
+      # ÉTAPE 6 : Uploader les rapports de tests
+      - name: Upload des rapports de tests
+        if: always() # Même si les tests échouent
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            test-results/
+            playwright-report/
+          if-no-files-found: warn #ne bloque pas si pas de fichier
+
+      - name: Échoue si test échoue
+        if: steps.e2e-tests.outcome == 'failure' || steps.unit-tests.outcome == 'failure'
+        run: exit 1
+
+  lint: #vérification du style de code
+    name: Vérificcation du code (ESLintn)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Instalation de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Installation des dépendances
+        run:
+          npm ci
+
+          # ÉTAPE : Lancer ESLint
+      - name: Lancement de ESLint
+        run:
+          npm run lint
+          #vérif que le code respecte le Google JavaScript Style Guide code uniforme est lisible
+      - name: Lancement de ESLint avec correction automatique
+        run: npm run lint:fix || echo "::warning::ESLint a trouvé des erreurs"
+        continue-on-error: true # Ne pas échouer le job si des erreurs sont trouvées, on veut juste les corriger
+
+  security:
+    name: Audit de sécurité
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Nécessaire pour les outils qui comparent les branches
+
+      - name: Installation de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Audit des dépendances
+        run: npm audit --audit-level=moderate
+      #BONUS
+      - name: Détection de secret exposé
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.before || 'HEAD~1' }} #Fallback qui compare avec le commit précédent
+          head: HEAD
