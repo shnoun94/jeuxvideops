@@ -413,7 +413,6 @@ function beginGame() {
 }
 
 function timeToString(time) {
- 
   const diffInHrs = time / 3600000;
   const hh = Math.floor(diffInHrs);
 
