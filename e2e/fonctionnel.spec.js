@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
+import {test, expect} from '@playwright/test';
 
 
 test.describe('SpaceWord - Tests Fonctionnels', () => {
   // TEST FONCTIONNEL 1 : Le jeu se charge correctement
-  test('La page du jeu se charge sans erreur', async ({ page }) => {
+  test('La page du jeu se charge sans erreur', async ({page}) => {
     test.setTimeout(50000);
     await page.clock.install();
     await page.goto('http://localhost:3000/');
@@ -22,7 +22,7 @@ test.describe('SpaceWord - Tests Fonctionnels', () => {
   });
 
   // TEST FONCTIONNEL 2 : Le joueur peut commencer une partie
-  test('Cliquer sur Start lance le jeu', async ({ page }) => {
+  test('Cliquer sur Start lance le jeu', async ({page}) => {
     test.setTimeout(50000);
     await page.clock.install();
 
@@ -59,6 +59,6 @@ await page.goto('http://localhost:3000');
 });
   
 
-  });
+});
 
 
