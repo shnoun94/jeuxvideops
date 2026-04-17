@@ -36,7 +36,7 @@ test.describe('SpaceWord - Tests Fonctionnels', () => {
 
   // TEST FONCTIONNEL 3 : On peut taper des lettres
   test('On peut taper des lettres pour jouer', async ({page}) => {
-    test.setTimeout(3000);
+    test.setTimeout(2000);
     await page.goto('http://localhost:3000');
     await page.click('#jogar-btn');
     await page.waitForTimeout(1000);
