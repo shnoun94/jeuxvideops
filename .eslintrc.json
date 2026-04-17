@@ -11,9 +11,18 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
+
   "rules": {
     "max-len": ["error", {"code": 120}],
     "require-jsdoc": "off",
-    "object-curly-spacing": ["error", "never"]
+    "object-curly-spacing": ["error", "never"],
+    "no-var": "off",
+    "no_redeclare": "off",
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    "no-empty": "off",
+    "no-self-assign": "off",
+    "comma-dangle": ["error", "never"]
+    
   }
 }
