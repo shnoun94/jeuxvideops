@@ -454,6 +454,6 @@ function restartStateGame() {
 
 if (typeof module !== 'undefined') {
   module.exports = {
-    getRandomInt, rectIntersect, circleIntersect, timeToString
+    getRandomInt, rectIntersect, circleIntersect, timeToString,
   };
 }

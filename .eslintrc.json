@@ -4,14 +4,16 @@
     "browser": true,
     "node": true,
     "es6": true,
-    "jest": true
+    "jest": true,
+    "es2020": true
   },
   "parserOptions": {
-    "ecmaVersion": 2020
+    "ecmaVersion": 2020,
+    "sourceType": "module"
   },
   "rules": {
     "max-len": ["error", {"code": 120}],
-    "require-jsdoc": "warn",
+    "require-jsdoc": "off",
     "object-curly-spacing": ["error", "never"]
   }
 }
