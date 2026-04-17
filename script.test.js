@@ -16,7 +16,8 @@ describe('SpaceWord - Tests Unitaires Fournis', () => {
 });
 describe('SpaceWord - Tests Supplémentaires', () => {
   it('getRandomInt(10, 20) >= 10', () => expect(getRandomInt(10, 20) >= 10).toBe(true));
-  it('getRandomInt(-10, -5) >= -10 && <= -5', () => expect(getRandomInt(-10, -5) >= -10 && getRandomInt(-10, -5) <= -5).toBe(true));
+  it('getRandomInt(-10, -5) >= -10 && <= -5', () => expect(getRandomInt(-10, -5) >= -10 && 
+  getRandomInt(-10, -5) <= -5).toBe(true));
 
   it('rectIntersect(0,0,10,10,0,0,10,10)', () => expect(rectIntersect(0, 0, 10, 10, 0, 0, 10, 10)).toBe(true));
 
