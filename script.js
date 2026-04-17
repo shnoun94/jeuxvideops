@@ -413,7 +413,8 @@ function beginGame() {
 }
 
 function timeToString(time) {
-  // TODO - Entendi nada não mas tamo ai - https://tinloof.com/blog/how-to-build-a-stopwatch-with-html-css-js-react-part-2/
+  // TODO - Entendi nada não mas tamo ai - 
+  // https://tinloof.com/blog/how-to-build-a-stopwatch-with-html-css-js-react-part-2/
   const diffInHrs = time / 3600000;
   const hh = Math.floor(diffInHrs);
 
