@@ -1,4 +1,3 @@
-export {getRandomInt, rectIntersect, circleIntersect, timeToString};
 const canvasWidth = document.getElementsByTagName('canvas')[0].clientWidth;
 const canvasHeight = document.getElementsByTagName('canvas')[0].clientHeight;
 
@@ -451,4 +450,10 @@ function restartStateGame() {
   startTime;
   lastTime = 0;
   invencibilityTime = 2000;
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = {
+    getRandomInt, rectIntersect, circleIntersect, timeToString
+  };
 }
