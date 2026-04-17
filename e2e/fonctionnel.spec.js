@@ -9,7 +9,7 @@ test.describe('SpaceWord - Tests Fonctionnels', () => {
     await page.goto('http://localhost:3000/');
 
     // Vérifier le titre
-    await expect(page).toHaveTitle("Jump Game");
+    await expect(page).toHaveTitle('Jump Game');
 
     // Vérifier qu'il n'y a pas d'erreur JavaScript
     page.on('pageerror', (err) => {
@@ -32,33 +32,22 @@ test.describe('SpaceWord - Tests Fonctionnels', () => {
     await page.click('a#jogar-btn');
     // Attendre 1 seconde
     await page.waitForTimeout(1000);
-
-  
   });
 
-// TEST FONCTIONNEL 3 : On peut taper des lettres
-test('On peut taper des lettres pour jouer', async ({page}) => {
-  test.setTimeout(3000);
-  
-await page.goto('http://localhost:3000');
+  // TEST FONCTIONNEL 3 : On peut taper des lettres
+  test('On peut taper des lettres pour jouer', async ({page}) => {
+    test.setTimeout(3000);
+    await page.goto('http://localhost:3000');
     await page.click('#jogar-btn');
-    
-    await page.waitForTimeout(1000); 
-    
+    await page.waitForTimeout(1000);
     // Taper des lettres
     await page.keyboard.type('space');
-    
-    await page.waitForTimeout(500); 
-    
+    await page.waitForTimeout(500);
     await page.keyboard.type('word');
-    
-    await page.waitForTimeout(500); 
-    
+    await page.waitForTimeout(500);
     // Vérifier que le jeu tourne toujours
     await expect(page.locator('canvas')).toBeVisible();
-});
-  
-
+  });
 });
 
 
