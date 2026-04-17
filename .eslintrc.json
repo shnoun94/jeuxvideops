@@ -21,8 +21,7 @@
     "no-undef": "off", //autorise les variables non définies pour les tests unitaires
     "no-unused-vars": "off", //autorise les variables non utilisées pour les tests unitaires
     "no-empty": "off", //autorise les blocs vides pour les tests unitaires
-    "no-self-assign": "off", //autorise les auto-assignations pour les tests unitaires
-    // "comma-dangle": ["error", "never"] //interdit les virgules finales
+    "no-self-assign": "off" //autorise les auto-assignations pour les tests unitaires
     
   }
 }
