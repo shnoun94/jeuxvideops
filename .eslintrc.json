@@ -16,13 +16,13 @@
     "max-len": ["error", {"code": 120}],
     "require-jsdoc": "off",
     "object-curly-spacing": ["error", "never"],
-    "no-var": "off",
-    "no_redeclare": "off",
-    "no-undef": "off",
-    "no-unused-vars": "off",
-    "no-empty": "off",
-    "no-self-assign": "off",
-    "comma-dangle": ["error", "never"]
+    "no-var": "off", //autorise var pour les tests unitaires
+    "no_redeclare": "off", //autorise la redéclaration de variables pour les tests unitaires
+    "no-undef": "off", //autorise les variables non définies pour les tests unitaires
+    "no-unused-vars": "off", //autorise les variables non utilisées pour les tests unitaires
+    "no-empty": "off", //autorise les blocs vides pour les tests unitaires
+    "no-self-assign": "off", //autorise les auto-assignations pour les tests unitaires
+    // "comma-dangle": ["error", "never"] //interdit les virgules finales
     
   }
 }
