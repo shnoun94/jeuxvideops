@@ -280,7 +280,8 @@ function generateString(length) {
 
 function createAnEnemy() {
   words.push(generateString(getRandomInt(4, 7)));
-  gameObjects.push(new Circle(context, getRandomInt(0, canvasWidth), getRandomInt(0, canvasHeight), getRandomInt(0, 100), getRandomInt(0, 100)));
+  gameObjects.push(new Circle(context, getRandomInt(0, canvasWidth), 
+  getRandomInt(0, canvasHeight), getRandomInt(0, 100), getRandomInt(0, 100)));
 }
 
 function getRandomInt(min, max) {
@@ -302,7 +303,8 @@ function detectCollisions() {
     obj1 = gameObjects[i];
     for (let j = i + 1; j < gameObjects.length; j++) {
       obj2 = gameObjects[j];
-      if (rectIntersect(obj1.x, obj1.y, obj1.width, obj1.height, obj2.x, obj2.y, obj2.width, obj2.height) || circleIntersect(obj1.x, obj1.y, obj1.radius, obj2.x, obj2.y, obj2.radius)) {
+      if (rectIntersect(obj1.x, obj1.y, obj1.width, obj1.height, obj2.x, obj2.y, obj2.width, obj2.height)
+         || circleIntersect(obj1.x, obj1.y, obj1.radius, obj2.x, obj2.y, obj2.radius)) {
         obj1.isColliding = true;
         obj2.isColliding = true;
 
